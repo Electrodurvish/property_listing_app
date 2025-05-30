@@ -1,9 +1,11 @@
-import express from 'express';
+import express, { RequestHandler } from 'express';
 import { authMiddleware } from '../middlewares/authMiddleware';
-import { recommendProperty, getRecommendations } from '../controllers/recommendationController';
+import { recommendProperty, getRecommendations, searchUsers } from '../controllers/recommendationController';
+
 const router = express.Router();
 
-router.post('/:propertyId', authMiddleware, recommendProperty);
-router.get('/', authMiddleware, getRecommendations);
+router.post('/:propertyId', authMiddleware, recommendProperty as any);
+router.get('/', authMiddleware, getRecommendations as any);
+router.get('/search-users', authMiddleware, searchUsers as any);
 
 export default router;
